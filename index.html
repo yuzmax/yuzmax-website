@@ -1,471 +1,1732 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="یوزمکس؛ طراحی، ساخت، تعمیر و بازسازی تجهیزات شهربازی، شبیه‌سازهای واقعیت مجازی و تجهیزات سرگرمی.">
-<meta name="theme-color" content="#17191d">
-<title>یوزمکس | طراحی و ساخت تجهیزات سرگرمی</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
-:root {
-  --bg: #111316;
-  --panel: #1b1e23;
-  --panel2: #22262c;
-  --red: #e53935;
-  --text: #f5f5f5;
-  --muted: #b2b6bd;
-  --border: #333840;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: 'Vazirmatn', Tahoma, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.9;
-}
-a { color: inherit; text-decoration: none; }
-.container {
-  width: min(1160px, 91%);
-  margin: auto;
-}
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(17,19,22,.94);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-}
-.nav {
-  min-height: 76px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-.logo {
-  font-family: Arial, sans-serif;
-  direction: ltr;
-  font-size: 29px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-.logo span { color: var(--red); }
-nav {
-  display: flex;
-  gap: 25px;
-  align-items: center;
-}
-nav a {
-  color: #d4d6da;
-  font-size: 14px;
-  transition: .2s;
-}
-nav a:hover { color: var(--red); }
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--red);
-  color: white;
-  padding: 11px 23px;
-  border-radius: 5px;
-  font-weight: 600;
-  border: 1px solid var(--red);
-  transition: .2s;
-  cursor: pointer;
-}
-.btn:hover {
-  background: #c92d29;
-  border-color: #c92d29;
-  transform: translateY(-2px);
-}
-.btn-outline {
-  background: transparent;
-  border-color: #646a73;
-}
-.btn-outline:hover {
-  background: var(--panel2);
-  border-color: var(--red);
-}
-.hero {
-  min-height: 580px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 15% 40%, rgba(229,57,53,.15), transparent 42%),
-    linear-gradient(120deg, #17191d, #111316 70%);
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  left: -80px;
-  bottom: -170px;
-  width: 420px;
-  height: 420px;
-  border: 1px solid rgba(229,57,53,.22);
-  transform: rotate(35deg);
-  pointer-events: none;
-}
-.hero-content {
-  max-width: 760px;
-  padding: 85px 0;
-  position: relative;
-  z-index: 1;
-}
-.eyebrow {
-  color: #ff7773;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: .3px;
-}
-.hero h1 {
-  font-size: clamp(34px, 5vw, 58px);
-  line-height: 1.5;
-  margin: 18px 0;
-  font-weight: 800;
-}
-.hero h1 span { color: var(--red); }
-.hero p {
-  max-width: 660px;
-  color: var(--muted);
-  font-size: 17px;
-  margin-bottom: 30px;
-}
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.section { padding: 85px 0; }
-.section-heading {
-  max-width: 680px;
-  margin-bottom: 38px;
-}
-.section-heading h2 {
-  font-size: clamp(25px, 3vw, 36px);
-  margin: 8px 0 12px;
-}
-.section-heading p { color: var(--muted); }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  padding: 27px;
-  transition: .25s;
-}
-.card:hover {
-  border-color: #8a3635;
-  transform: translateY(-4px);
-}
-.card-icon {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  background: rgba(229,57,53,.12);
-  border: 1px solid rgba(229,57,53,.28);
-  border-radius: 8px;
-  color: #ff7773;
-  font-size: 23px;
-  margin-bottom: 18px;
-}
-.card h3 { margin: 0 0 10px; font-size: 19px; }
-.card p {
-  color: var(--muted);
-  font-size: 14px;
-  margin: 0;
-}
-.about {
-  background: #181b20;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 55px;
-  align-items: center;
-}
-.about h2 {
-  font-size: clamp(27px, 3vw, 37px);
-  line-height: 1.7;
-  margin: 10px 0 18px;
-}
-.about p { color: var(--muted); }
-.about-box {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 30px;
-}
-.about-box div {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-}
-.about-box div:last-child { border-bottom: 0; }
-.about-box strong { color: #fff; }
-.about-box span {
-  display: block;
-  color: var(--muted);
-  font-size: 14px;
-}
-.projects {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-.project {
-  min-height: 190px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 27px;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background:
-    linear-gradient(0deg, rgba(10,11,13,.97), rgba(20,22,25,.45)),
-    repeating-linear-gradient(135deg, #272b31 0, #272b31 2px, #1b1e23 2px, #1b1e23 12px);
-}
-.project .tag {
-  color: #ff7773;
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-.project h3 { margin: 0; font-size: 20px; }
-.project p {
-  color: var(--muted);
-  margin: 7px 0 0;
-  font-size: 14px;
-}
-.contact {
-  background:
-    radial-gradient(ellipse at 80% 50%, rgba(229,57,53,.10), transparent 50%),
-    #181b20;
-  border-top: 1px solid var(--border);
-}
-.contact-box {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 38px;
-  background: rgba(27,30,35,.88);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-}
-.contact-box h2 { margin: 0 0 10px; font-size: 29px; }
-.contact-box p { color: var(--muted); margin: 0; }
-footer {
-  padding: 25px 0;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 13px;
-}
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-footer .logo { font-size: 22px; color: white; }
-@media (max-width: 800px) {
-  nav { gap: 12px; }
-  nav a { font-size: 12px; }
-  .nav > .btn { display: none; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .about-grid { grid-template-columns: 1fr; gap: 28px; }
-}
-@media (max-width: 520px) {
-  .nav { min-height: 68px; }
-  .logo { font-size: 24px; }
-  nav { gap: 10px; }
-  nav a { font-size: 11px; }
-  .hero { min-height: 500px; }
-  .hero-content { padding: 65px 0; }
-  .hero p { font-size: 15px; }
-  .section { padding: 60px 0; }
-  .grid, .projects { grid-template-columns: 1fr; }
-  .card { padding: 23px; }
-  .contact-box { padding: 25px; flex-direction: column; align-items: flex-start; }
-  .contact-box h2 { font-size: 25px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="یوزمکس؛ تولیدکننده تجهیزات خانه‌بازی و شهربازی، شبیه‌سازهای بازی، تجهیزات الکترونیکی و مکانیکی و ارائه خدمات تعمیر و تجهیز مجموعه‌های بازی.">
+
+  <title>یوزمکس | تولید تجهیزات خانه‌بازی و شهربازی</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --red: #e33d40;
+      --red-dark: #c92d31;
+      --ink: #202328;
+      --muted: #727780;
+      --light: #f5f6f7;
+      --line: #e8e9eb;
+      --white: #ffffff;
+      --radius: 18px;
+      --shadow: 0 12px 35px rgba(20, 25, 35, .07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: "Vazirmatn", Tahoma, sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.9;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .container {
+      width: min(1160px, 92%);
+      margin-inline: auto;
+    }
+
+    .topbar {
+      background: #f5f6f7;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 37px;
+    }
+
+    .topbar strong {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, .96);
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--red);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 21px;
+      box-shadow: 0 5px 14px rgba(227, 61, 64, .22);
+    }
+
+    .brand-name {
+      display: block;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -.6px;
+      line-height: 1.35;
+    }
+
+    .brand-caption {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 13px;
+      color: #444951;
+    }
+
+    .nav-links a {
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .nav-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--red);
+      color: white;
+      padding: 10px 17px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+
+    .nav-contact:hover,
+    .btn-primary:hover {
+      background: var(--red-dark);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 6px 12px;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    /* اسلایدر اصلی */
+
+    .hero {
+      padding-top: 22px;
+    }
+
+    .slider {
+      position: relative;
+      min-height: 480px;
+      height: min(570px, 65vw);
+      border-radius: 25px;
+      overflow: hidden;
+      background: #34383d;
+      isolation: isolate;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .7s ease, visibility .7s;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .slide img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        270deg,
+        rgba(18, 21, 26, .85) 0%,
+        rgba(18, 21, 26, .62) 45%,
+        rgba(18, 21, 26, .08) 100%
+      );
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      width: min(620px, 75%);
+      padding: 85px 65px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      background: #fff0f0;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 17px;
+    }
+
+    .slide .eyebrow {
+      background: rgba(255, 255, 255, .13);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, .24);
+    }
+
+    .slide h1,
+    .slide h2 {
+      font-size: clamp(29px, 4.1vw, 49px);
+      line-height: 1.55;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .slide p {
+      color: rgba(255, 255, 255, .88);
+      font-size: 15px;
+      max-width: 510px;
+      line-height: 2.1;
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 11px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .2s;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+    }
+
+    .btn-white {
+      color: white;
+      border-color: rgba(255, 255, 255, .6);
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .btn-white:hover {
+      background: white;
+      color: var(--ink);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .4);
+      background: rgba(0, 0, 0, .22);
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 23px;
+    }
+
+    .slider-prev {
+      right: 18px;
+    }
+
+    .slider-next {
+      left: 18px;
+    }
+
+    .slider-dots {
+      position: absolute;
+      z-index: 5;
+      bottom: 23px;
+      right: 65px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .slider-dots button {
+      width: 9px;
+      height: 9px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .55);
+      cursor: pointer;
+    }
+
+    .slider-dots button.active {
+      width: 27px;
+      border-radius: 10px;
+      background: var(--red);
+    }
+
+    /* مزیت‌ها */
+
+    .benefits {
+      position: relative;
+      z-index: 3;
+      margin-top: -1px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 24px;
+    }
+
+    .benefit + .benefit {
+      border-right: 1px solid var(--line);
+    }
+
+    .benefit-icon {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      border-radius: 13px;
+      background: #fff0f0;
+      color: var(--red);
+      font-size: 23px;
+    }
+
+    .benefit h3 {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .benefit p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* بخش‌های عمومی */
+
+    .section {
+      padding: 95px 0;
+    }
+
+    .section-soft {
+      background: var(--light);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(25px, 3vw, 34px);
+      line-height: 1.6;
+      margin-top: 7px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 520px;
+      margin-top: 8px;
+    }
+
+    .section-link {
+      flex-shrink: 0;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* معرفی */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      min-height: 420px;
+    }
+
+    .about-image img {
+      height: 420px;
+      border-radius: 23px;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 22px;
+      right: -17px;
+      background: white;
+      padding: 18px 23px;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border-right: 4px solid var(--red);
+    }
+
+    .about-badge strong {
+      display: block;
+      font-size: 16px;
+    }
+
+    .about-badge span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .about-text h2 {
+      font-size: clamp(27px, 3.2vw, 37px);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .about-text > p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin: 25px 0 30px;
+    }
+
+    .check-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: #41464d;
+    }
+
+    .check {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #e9f7ee;
+      color: #24864b;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    /* کارت محصولات */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 21px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-image {
+      position: relative;
+      height: 205px;
+      background: #e7e9ec;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      height: 100%;
+      transition: transform .4s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.045);
+    }
+
+    .product-number {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, .95);
+      color: var(--red);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .product-info {
+      padding: 19px;
+    }
+
+    .product-info h3 {
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .product-info p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 2;
+      min-height: 45px;
+    }
+
+    .product-link {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      margin-top: 15px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* خدمات */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      padding: 30px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: border-color .2s, transform .2s;
+    }
+
+    .service-card:hover {
+      border-color: #f1b0b1;
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      width: 57px;
+      height: 57px;
+      display: grid;
+      place-items: center;
+      background: #fff0f0;
+      color: var(--red);
+      border-radius: 16px;
+      font-size: 27px;
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 2.1;
+    }
+
+    /* دعوت به تماس */
+
+    .cta {
+      padding: 65px 0;
+      background: #25282d;
+      color: white;
+    }
+
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .cta h2 {
+      font-size: clamp(23px, 3vw, 33px);
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      color: #c8cbd0;
+      font-size: 13px;
+    }
+
+    .cta .btn {
+      flex-shrink: 0;
+    }
+
+    /* تماس و نقشه */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .contact-info {
+      padding: 32px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .contact-info h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .contact-info > p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      padding: 17px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      background: #fff0f0;
+      border-radius: 12px;
+      color: var(--red);
+      font-size: 20px;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .contact-item a:hover {
+      color: var(--red);
+    }
+
+    .map {
+      min-height: 420px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #e8eaed;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 0;
+    }
+
+    /* فوتر */
+
+    .footer {
+      background: #202328;
+      color: white;
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer p {
+      color: #bfc2c7;
+      font-size: 11px;
+    }
+
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .footer-brand span {
+      color: var(--red);
+    }
+
+    /* دکمه تماس شناور */
+
+    .floating-contact {
+      position: fixed;
+      z-index: 200;
+      bottom: 23px;
+      left: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: #1e9b58;
+      color: white;
+      border-radius: 40px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .2);
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform .2s;
+    }
+
+    .floating-contact:hover {
+      transform: translateY(-3px);
+    }
+
+    .floating-contact span {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    /* نمایشگرهای متوسط */
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        gap: 14px;
+        font-size: 12px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        gap: 35px;
+      }
+
+      .benefit {
+        padding: 18px 13px;
+      }
+
+      .slider {
+        min-height: 450px;
+      }
+
+      .slide-content {
+        padding: 75px 45px;
+      }
+    }
+
+    /* موبایل */
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        min-height: 34px;
+        font-size: 10px;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand-mark {
+        width: 39px;
+        height: 39px;
+      }
+
+      .brand-name {
+        font-size: 19px;
+      }
+
+      .brand-caption {
+        font-size: 9px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-contact {
+        display: none;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        padding: 18px 5%;
+        background: white;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, .06);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .hero {
+        padding-top: 12px;
+      }
+
+      .slider {
+        height: 510px;
+        min-height: 0;
+        border-radius: 17px;
+      }
+
+      .slide img {
+        object-position: center;
+      }
+
+      .slide::after {
+        background: linear-gradient(
+          0deg,
+          rgba(18, 21, 26, .94) 0%,
+          rgba(18, 21, 26, .72) 55%,
+          rgba(18, 21, 26, .13) 100%
+        );
+      }
+
+      .slide-content {
+        position: absolute;
+        bottom: 35px;
+        right: 0;
+        width: 100%;
+        padding: 25px 25px 40px;
+      }
+
+      .slide h1,
+      .slide h2 {
+        font-size: 29px;
+        line-height: 1.65;
+      }
+
+      .slide p {
+        font-size: 12px;
+      }
+
+      .hero-buttons {
+        margin-top: 20px;
+      }
+
+      .btn {
+        padding: 11px 15px;
+        font-size: 12px;
+      }
+
+      .slider-arrow {
+        top: 22px;
+        transform: none;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+      }
+
+      .slider-prev {
+        right: 14px;
+      }
+
+      .slider-next {
+        left: 14px;
+      }
+
+      .slider-dots {
+        right: 25px;
+        bottom: 17px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        border-radius: 14px;
+      }
+
+      .benefit {
+        padding: 15px 19px;
+      }
+
+      .benefit + .benefit {
+        border-right: none;
+        border-top: 1px solid var(--line);
+      }
+
+      .benefit-icon {
+        width: 41px;
+        height: 41px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .section-heading {
+        display: block;
+        margin-bottom: 25px;
+      }
+
+      .section-heading h2 {
+        font-size: 26px;
+      }
+
+      .section-heading p {
+        font-size: 12px;
+      }
+
+      .section-link {
+        display: inline-block;
+        margin-top: 13px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .about-image {
+        min-height: 300px;
+      }
+
+      .about-image img {
+        height: 300px;
+      }
+
+      .about-badge {
+        right: 12px;
+        bottom: 13px;
+      }
+
+      .about-text h2 {
+        font-size: 28px;
+      }
+
+      .about-text > p {
+        font-size: 13px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .product-image {
+        height: 145px;
+      }
+
+      .product-info {
+        padding: 13px;
+      }
+
+      .product-info h3 {
+        font-size: 13px;
+      }
+
+      .product-info p {
+        font-size: 10px;
+      }
+
+      .product-link {
+        font-size: 11px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .service-card {
+        padding: 23px;
+      }
+
+      .service-icon {
+        margin-bottom: 13px;
+      }
+
+      .cta {
+        padding: 45px 0;
+      }
+
+      .cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .contact-info {
+        padding: 24px;
+      }
+
+      .map,
+      .map iframe {
+        min-height: 330px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .floating-contact {
+        bottom: 15px;
+        left: 14px;
+        padding: 11px 15px;
+        font-size: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <div class="container nav">
-    <a href="#home" class="logo" aria-label="YUZMAX">YUZ<span>MAX</span></a>
-    <nav aria-label="منوی اصلی">
-      <a href="#home">خانه</a>
-      <a href="#products">محصولات</a>
-      <a href="#services">خدمات</a>
-      <a href="#projects">نمونه‌کارها</a>
-    </nav>
-    <a href="#contact" class="btn">تماس با ما</a>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>یوزمکس | تولید تجهیزات خانه‌بازی و شهربازی</span>
+      <span>تماس کارگاه: <strong>۰۹۰۰۲۰۱۸۸۴۴</strong></span>
+    </div>
   </div>
-</header>
-<main>
-  <section class="hero" id="home">
-    <div class="container">
-      <div class="hero-content">
-        <div class="eyebrow">طراحی مهندسی · ساخت · توسعه</div>
-        <h1>
-          ایده‌ها را به<br>
-          <span>تجربه‌های واقعی</span> تبدیل می‌کنیم.
-        </h1>
-        <p>
-          یوزمکس در زمینه طراحی، ساخت، تعمیر و بازسازی تجهیزات سرگرمی،
-          شبیه‌سازهای واقعیت مجازی و سامانه‌های الکترونیکی فعالیت می‌کند.
-          از ایده اولیه تا ساخت و راه‌اندازی، همراه پروژه شما هستیم.
-        </p>
-        <div class="actions">
-          <a href="#products" class="btn">مشاهده محصولات</a>
-          <a href="#services" class="btn btn-outline">آشنایی با خدمات</a>
+
+  <header class="header">
+    <div class="container nav">
+
+      <a href="#home" class="brand" aria-label="صفحه اصلی یوزمکس">
+        <span class="brand-mark">Y</span>
+        <span>
+          <span class="brand-name">یوزمکس</span>
+          <span class="brand-caption">تجهیزات بازی، با نگاه مهندسی</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو" aria-expanded="false">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">صفحه اصلی</a>
+        <a href="#about">درباره ما</a>
+        <a href="#products">محصولات</a>
+        <a href="#services">خدمات</a>
+        <a href="#contact">تماس با ما</a>
+      </nav>
+
+      <a href="tel:09002018844" class="nav-contact">تماس با کارگاه ←</a>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- اسلایدر اصلی -->
+    <section class="hero container" id="home">
+
+      <div class="slider" id="slider">
+
+        <article class="slide active">
+          <img
+            src="https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&w=1800&q=85"
+            alt="فضای رنگارنگ بازی کودکان"
+            fetchpriority="high"
+          >
+
+          <div class="slide-content">
+            <span class="eyebrow">یوزمکس | سازنده تجهیزات بازی</span>
+            <h1>ایده‌های بازی،<br>با اجرای مهندسی</h1>
+            <p>
+              تولید تجهیزات خانه‌بازی و شهربازی با تمرکز بر سیستم‌های
+              الکترونیکی، مکانیکی و راهکارهای سرگرمی.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">مشاهده محصولات</a>
+              <a href="#contact" class="btn btn-white">ارتباط با ما</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide">
+          <img
+            src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1800&q=85"
+            alt="اسباب‌بازی‌ها و تجهیزات سرگرمی کودکان"
+            loading="lazy"
+          >
+
+          <div class="slide-content">
+            <span class="eyebrow">تولید و تجهیز</span>
+            <h2>از تجهیزات کوچک<br>تا تجربه‌های متفاوت</h2>
+            <p>
+              طراحی و ساخت محصولات کاربردی برای مجموعه‌های بازی،
+              شهربازی‌ها و فضاهای سرگرمی.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#products" class="btn btn-primary">آشنایی با محصولات</a>
+              <a href="tel:09002018844" class="btn btn-white">تماس با کارگاه</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide">
+          <img
+            src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1800&q=85"
+            alt="تجهیزات سرگرمی و بازی دیجیتال"
+            loading="lazy"
+          >
+
+          <div class="slide-content">
+            <span class="eyebrow">فناوری در خدمت سرگرمی</span>
+            <h2>ترکیب مکانیک،<br>الکترونیک و بازی</h2>
+            <p>
+              شبیه‌سازهای بازی، تایمرها، شماره‌اندازها و تجهیزات
+              الکترونیکی متناسب با نیاز مجموعه‌های سرگرمی.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#services" class="btn btn-primary">خدمات یوزمکس</a>
+              <a href="#contact" class="btn btn-white">درخواست مشاوره</a>
+            </div>
+          </div>
+        </article>
+
+        <button class="slider-arrow slider-prev" id="prevSlide" aria-label="اسلاید قبلی">›</button>
+        <button class="slider-arrow slider-next" id="nextSlide" aria-label="اسلاید بعدی">‹</button>
+
+        <div class="slider-dots" id="sliderDots" aria-label="انتخاب اسلاید"></div>
+
+      </div>
+    </section>
+
+    <!-- مزیت‌ها -->
+    <section class="benefits">
+      <div class="container">
+        <div class="benefits-grid">
+
+          <div class="benefit">
+            <div class="benefit-icon">⚙</div>
+            <div>
+              <h3>تولید تجهیزات</h3>
+              <p>ساخت محصولات کاربردی برای مجموعه‌های بازی</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="benefit-icon">⌘</div>
+            <div>
+              <h3>فناوری و کنترل</h3>
+              <p>توجه به سیستم‌های الکترونیکی و نرم‌افزاری</p>
+            </div>
+          </div>
+
+          <div class="benefit">
+            <div class="benefit-icon">↻</div>
+            <div>
+              <h3>تعمیر و پشتیبانی</h3>
+              <p>بررسی و تعمیر برخی تجهیزات بازی</p>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
-  <section class="section" id="products">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">محصولات یوزمکس</div>
-        <h2>راهکارهایی برای سرگرمی و تجربه‌های تعاملی</h2>
-        <p>
-          طراحی و ساخت تجهیزات متناسب با نیاز مجموعه‌های تفریحی،
-          شهربازی‌ها و کسب‌وکارهای سرگرمی.
-        </p>
-      </div>
-      <div class="grid">
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">◈</div>
-          <h3>شبیه‌سازهای واقعیت مجازی</h3>
+    </section>
+
+    <!-- درباره یوزمکس -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1564429238817-393bd4286b2d?auto=format&fit=crop&w=1100&q=85"
+            alt="فضای سرگرمی و بازی"
+            loading="lazy"
+          >
+
+          <div class="about-badge">
+            <strong>یوزمکس</strong>
+            <span>تولیدکننده تجهیزات بازی</span>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <span class="eyebrow">درباره یوزمکس</span>
+
+          <h2>ما تجهیزات بازی می‌سازیم؛<br>نه صرفاً پروژه اجرا می‌کنیم.</h2>
+
           <p>
-            تجهیزات شبیه‌سازی حرکتی و تجربه‌های واقعیت مجازی
-            برای شهربازی‌ها و مجموعه‌های تفریحی.
+            یوزمکس در زمینه تولید تجهیزات خانه‌بازی و شهربازی فعالیت می‌کند.
+            تمرکز ما بر ساخت محصولاتی است که با ترکیب مکانیک، الکترونیک
+            و سیستم‌های کنترلی، تجربه‌ای متفاوت برای کاربران ایجاد می‌کنند.
           </p>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">⌁</div>
-          <h3>شبیه‌ساز رانندگی</h3>
+
           <p>
-            سامانه‌های شبیه‌سازی رانندگی با ساختار مکانیکی،
-            تجهیزات کنترلی و طراحی متناسب با پروژه.
+            از شبیه‌سازهای بازی و تجهیزات واقعیت مجازی گرفته تا سیستم‌های
+            تایمر، شماره‌انداز و دستگاه‌های سرگرمی خاص، تلاش می‌کنیم
+            راهکارهایی متناسب با نیاز مجموعه‌های بازی ارائه دهیم.
           </p>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">⚙</div>
-          <h3>تجهیزات شهربازی</h3>
+
+          <ul class="check-list">
+            <li><span class="check">✓</span><span>ساخت تجهیزات و دستگاه‌های سرگرمی</span></li>
+            <li><span class="check">✓</span><span>تمرکز بر تجهیزات الکترونیکی و مکانیکی سبک</span></li>
+            <li><span class="check">✓</span><span>تجهیز مجموعه‌ها و تعمیر برخی دستگاه‌ها</span></li>
+            <li><span class="check">✓</span><span>امکان بررسی ایده‌های سفارشی متناسب با نیاز مشتری</span></li>
+          </ul>
+
+          <a href="#contact" class="btn btn-primary">ارتباط با یوزمکس ←</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- محصولات -->
+    <section class="section section-soft" id="products">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">محصولات یوزمکس</span>
+            <h2>تجهیزات برای تجربه‌های متفاوت</h2>
+            <p>
+              بخشی از زمینه‌های تولید و فعالیت ما در حوزه تجهیزات
+              خانه‌بازی، شهربازی و سرگرمی.
+            </p>
+          </div>
+
+          <a href="#contact" class="section-link">استعلام محصول ←</a>
+        </div>
+
+        <div class="products-grid">
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=700&q=80"
+                alt="تجهیزات واقعیت مجازی"
+                loading="lazy"
+              >
+              <span class="product-number">۰۱</span>
+            </div>
+            <div class="product-info">
+              <h3>تجهیزات واقعیت مجازی</h3>
+              <p>شبیه‌سازهای حرکتی و تجهیزات سرگرمی مبتنی بر واقعیت مجازی.</p>
+              <a href="#contact" class="product-link">اطلاعات بیشتر ←</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=700&q=80"
+                alt="شبیه‌ساز رانندگی"
+                loading="lazy"
+              >
+              <span class="product-number">۰۲</span>
+            </div>
+            <div class="product-info">
+              <h3>شبیه‌ساز رانندگی</h3>
+              <p>تجهیزات شبیه‌سازی رانندگی برای محیط‌های سرگرمی و بازی.</p>
+              <a href="#contact" class="product-link">اطلاعات بیشتر ←</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1560961911-ba7ef651a56c?auto=format&fit=crop&w=700&q=80"
+                alt="تجهیزات سرگرمی"
+                loading="lazy"
+              >
+              <span class="product-number">۰۳</span>
+            </div>
+            <div class="product-info">
+              <h3>دستگاه‌های سرگرمی</h3>
+              <p>ساخت و توسعه دستگاه‌های مکانیکی و الکترونیکی بازی.</p>
+              <a href="#contact" class="product-link">اطلاعات بیشتر ←</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?auto=format&fit=crop&w=700&q=80"
+                alt="تجهیزات بازی کودکان"
+                loading="lazy"
+              >
+              <span class="product-number">۰۴</span>
+            </div>
+            <div class="product-info">
+              <h3>تجهیزات خانه‌بازی</h3>
+              <p>تجهیزات منتخب برای فضاهای بازی کودکان و مجموعه‌های سرگرمی.</p>
+              <a href="#contact" class="product-link">اطلاعات بیشتر ←</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=700&q=80"
+                alt="تجهیزات و قطعات مکانیکی"
+                loading="lazy"
+              >
+              <span class="product-number">۰۵</span>
+            </div>
+            <div class="product-info">
+              <h3>تجهیزات مکانیکی بازی</h3>
+              <p>دستگاه‌ها و مکانیزم‌های حرکتی متناسب با کاربردهای سرگرمی.</p>
+              <a href="#contact" class="product-link">اطلاعات بیشتر ←</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=700&q=80"
+                alt="تجهیزات بازی کودکان"
+                loading="lazy"
+              >
+              <span class="product-number">۰۶</span>
+            </div>
+            <div class="product-info">
+              <h3>استخر توپ و شن</h3>
+              <p>تجهیزات مکمل فضاهای بازی کودکان و خانه‌بازی‌ها.</p>
+              <a href="#contact" class="product-link">اطلاعات بیشتر ←</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=700&q=80"
+                alt="دستگاه‌های بازی الکترونیکی"
+                loading="lazy"
+              >
+              <span class="product-number">۰۷</span>
+            </div>
+            <div class="product-info">
+              <h3>تایمر و شماره‌انداز</h3>
+              <p>سیستم‌های کنترلی و شمارش زمان و امتیاز برای دستگاه‌های بازی.</p>
+              <a href="#contact" class="product-link">اطلاعات بیشتر ←</a>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image">
+              <img
+                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=700&q=80"
+                alt="تجهیزات سرگرمی دیجیتال"
+                loading="lazy"
+              >
+              <span class="product-number">۰۸</span>
+            </div>
+            <div class="product-info">
+              <h3>تجهیزات سفارشی</h3>
+              <p>بررسی و ساخت برخی دستگاه‌ها و راهکارهای متناسب با نیاز مشتری.</p>
+              <a href="#contact" class="product-link">طرح ایده شما ←</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- خدمات -->
+    <section class="section" id="services">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">خدمات ما</span>
+            <h2>از ساخت دستگاه تا نگهداری تجهیزات</h2>
+            <p>
+              خدمات یوزمکس با تمرکز بر تجهیزات بازی و نیازهای فنی
+              مجموعه‌های سرگرمی ارائه می‌شود.
+            </p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+
+          <article class="service-card">
+            <div class="service-icon">⚙</div>
+            <h3>ساخت و تولید</h3>
+            <p>
+              تولید تجهیزات بازی و دستگاه‌های سرگرمی با توجه به
+              کاربرد، ساختار مکانیکی و سیستم کنترلی موردنیاز.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">▦</div>
+            <h3>تجهیز مجموعه‌های بازی</h3>
+            <p>
+              کمک به انتخاب و تأمین تجهیزات متناسب با فضای موجود،
+              نوع فعالیت و نیاز مجموعه‌های بازی.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">↻</div>
+            <h3>تعمیر و بازسازی</h3>
+            <p>
+              بررسی فنی و تعمیر برخی تجهیزات مکانیکی، الکترونیکی
+              و کنترلی دستگاه‌های بازی.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- دعوت به تماس -->
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>برای تجهیز مجموعه‌تان برنامه دارید؟</h2>
           <p>
-            طراحی و ساخت تجهیزات سرگرمی و راهکارهای سفارشی
-            برای مجموعه‌های تفریحی و خانه‌های بازی.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-  <section class="section about" id="services">
-    <div class="container about-grid">
-      <div>
-        <div class="eyebrow">خدمات تخصصی</div>
-        <h2>از ایده و طراحی تا ساخت، تعمیر و بازسازی</h2>
-        <p>
-          هر پروژه نیازهای خاص خودش را دارد. رویکرد یوزمکس،
-          بررسی نیاز واقعی، انتخاب راهکار فنی مناسب و اجرای عملی
-          آن با توجه به شرایط و محدودیت‌های پروژه است.
-        </p>
-        <a href="#contact" class="btn">درباره پروژه‌تان صحبت کنیم</a>
-      </div>
-      <div class="about-box">
-        <div>
-          <strong>طراحی و ساخت سفارشی</strong>
-          <span>توسعه تجهیزات مکانیکی، الکترونیکی و کنترلی</span>
-        </div>
-        <div>
-          <strong>تعمیر و عیب‌یابی</strong>
-          <span>بررسی فنی و رفع ایراد تجهیزات سرگرمی</span>
-        </div>
-        <div>
-          <strong>بازسازی و به‌روزرسانی</strong>
-          <span>بهبود عملکرد و نوسازی تجهیزات موجود</span>
-        </div>
-        <div>
-          <strong>مشاوره فنی پروژه</strong>
-          <span>بررسی نیازها و پیشنهاد راهکار اجرایی</span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">توانمندی‌های اجرایی</div>
-        <h2>زمینه‌های فعالیت ما</h2>
-        <p>
-          در نسخه نهایی این بخش، تصاویر واقعی پروژه‌ها،
-          مشخصات تجهیزات و جزئیات نمونه‌کارها قرار خواهند گرفت.
-        </p>
-      </div>
-      <div class="projects">
-        <article class="project">
-          <div class="tag">واقعیت مجازی</div>
-          <h3>سامانه‌های شبیه‌سازی حرکتی</h3>
-          <p>طراحی و توسعه تجهیزات تعاملی برای تجربه‌های سرگرمی.</p>
-        </article>
-        <article class="project">
-          <div class="tag">تجهیزات سرگرمی</div>
-          <h3>طراحی و ساخت تجهیزات سفارشی</h3>
-          <p>تبدیل نیازهای عملیاتی به راهکارهای مهندسی.</p>
-        </article>
-        <article class="project">
-          <div class="tag">الکترونیک و کنترل</div>
-          <h3>سامانه‌های کنترلی و الکترونیکی</h3>
-          <p>طراحی مدارها و سیستم‌های کنترلی متناسب با پروژه.</p>
-        </article>
-        <article class="project">
-          <div class="tag">خدمات فنی</div>
-          <h3>تعمیر و بازسازی تجهیزات</h3>
-          <p>عیب‌یابی، اصلاح عملکرد و نوسازی تجهیزات موجود.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-  <section class="section contact" id="contact">
-    <div class="container">
-      <div class="contact-box">
-        <div>
-          <div class="eyebrow">ارتباط با یوزمکس</div>
-          <h2>برای پروژه بعدی آماده‌ایم.</h2>
-          <p>
-            برای دریافت اطلاعات محصولات، بررسی نیازهای فنی
-            یا صحبت درباره یک پروژه با ما در ارتباط باشید.
+            درباره محصول موردنیازتان با ما صحبت کنید تا امکان ساخت
+            یا تأمین آن را بررسی کنیم.
           </p>
         </div>
-        <a href="mailto:info@yuzmax.ir" class="btn">ارسال ایمیل</a>
+
+        <a href="tel:09002018844" class="btn btn-primary">
+          تماس با کارگاه: ۰۹۰۰۲۰۱۸۸۴۴
+        </a>
       </div>
+    </section>
+
+    <!-- تماس با ما -->
+    <section class="section section-soft" id="contact">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">ارتباط با یوزمکس</span>
+            <h2>با ما در تماس باشید</h2>
+            <p>
+              برای استعلام محصولات، بررسی نیاز مجموعه یا هماهنگی
+              خدمات با کارگاه تماس بگیرید.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info">
+            <h3>اطلاعات کارگاه</h3>
+            <p>راه‌های ارتباطی با مجموعه یوزمکس</p>
+
+            <div class="contact-item">
+              <div class="contact-icon">⌖</div>
+              <div>
+                <strong>نشانی کارگاه</strong>
+                <span>زاهدان، نبش هاشمی ۹</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">☎</div>
+              <div>
+                <strong>شماره تماس</strong>
+                <a href="tel:09002018844" dir="ltr">09002018844</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">⌘</div>
+              <div>
+                <strong>زمینه فعالیت</strong>
+                <span>تولید تجهیزات خانه‌بازی و شهربازی</span>
+              </div>
+            </div>
+
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=زاهدان+نبش+هاشمی+۹"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+              style="margin-top: 18px;"
+            >
+              مشاهده مسیر روی نقشه ←
+            </a>
+          </div>
+
+          <div class="map">
+            <iframe
+              title="نقشه نشانی کارگاه یوزمکس در زاهدان"
+              src="https://maps.google.com/maps?q=Zahedan%20Hashemi%209%20Iran&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">یوز<span>مکس</span></div>
+      <p>تولید تجهیزات خانه‌بازی و شهربازی | زاهدان</p>
+      <p>© <span id="year"></span> تمامی حقوق محفوظ است.</p>
     </div>
-  </section>
-</main>
-<footer>
-  <div class="container footer-inner">
-    <a href="#home" class="logo">YUZ<span>MAX</span></a>
-    <div>یوزمکس؛ طراحی، ساخت و توسعه تجهیزات سرگرمی</div>
-    <div>© <span id="year"></span> YUZMAX</div>
-  </div>
-</footer>
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+  </footer>
+
+  <!-- دکمه تماس شناور -->
+  <a
+    href="tel:09002018844"
+    class="floating-contact"
+    aria-label="تماس تلفنی با کارگاه یوزمکس"
+  >
+    <span>☎</span>
+    تماس با کارگاه
+  </a>
+
+  <script>
+    // منوی موبایل
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // اسلایدر تصاویر
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dotsContainer = document.getElementById("sliderDots");
+    const slider = document.getElementById("slider");
+
+    let currentSlide = 0;
+    let sliderTimer;
+
+    slides.forEach(function (_, index) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "نمایش اسلاید " + (index + 1));
+
+      dot.addEventListener("click", function () {
+        showSlide(index);
+        restartSlider();
+      });
+
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.querySelectorAll("button"));
+
+    function showSlide(index) {
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle("active", i === currentSlide);
+      });
+
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("active", i === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function startSlider() {
+      sliderTimer = setInterval(nextSlide, 6000);
+    }
+
+    function restartSlider() {
+      clearInterval(sliderTimer);
+      startSlider();
+    }
+
+    document.getElementById("nextSlide").addEventListener("click", function () {
+      nextSlide();
+      restartSlider();
+    });
+
+    document.getElementById("prevSlide").addEventListener("click", function () {
+      prevSlide();
+      restartSlider();
+    });
+
+    slider.addEventListener("mouseenter", function () {
+      clearInterval(sliderTimer);
+    });
+
+    slider.addEventListener("mouseleave", function () {
+      restartSlider();
+    });
+
+    showSlide(0);
+    startSlider();
+
+    // سال جاری
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
 </body>
 </html>
