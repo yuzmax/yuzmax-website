@@ -1,20 +1,13 @@
 media:
-
-* name: images
-    label: تصاویر سایت
-    input: assets/images
-    output: assets/images
+  input: assets/images
+  output: /assets/images
+  categories: [image]
 
 content:
-
-* name: homepage
-    label: صفحه اصلی
+  - name: website
+    label: فایل سایت
     type: file
     path: index.html
-    fields:
-    * name: title
-        label: عنوان صفحه
-        type: string
-    * name: description
-        label: توضیحات صفحه
-        type: text
+    format: code
+    options:
+      language: html
