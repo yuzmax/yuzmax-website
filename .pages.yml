@@ -1,0 +1,20 @@
+media:
+
+* name: images
+    label: تصاویر سایت
+    input: assets/images
+    output: assets/images
+
+content:
+
+* name: homepage
+    label: صفحه اصلی
+    type: file
+    path: index.html
+    fields:
+    * name: title
+        label: عنوان صفحه
+        type: string
+    * name: description
+        label: توضیحات صفحه
+        type: text
